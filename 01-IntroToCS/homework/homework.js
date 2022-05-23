@@ -10,7 +10,7 @@ function BinarioADecimal(num) {
 
   let index = 0;
 
-  for (let position = bin.length - 1; position >= 0; position--) {
+  for (let position = bin.length - 1; bin.length <= 2 ? position > 0 : position >= 0; position--) {
 
     numDecimal += (bin[index] * 2) ** position;
 
@@ -24,19 +24,14 @@ function BinarioADecimal(num) {
 
 function DecimalABinario(num) {
   // tu codigo aca
-  let nbin = [];
-
-  // dividir el numero x2 las veces que sean necesarias y leer de abajo hacia arriba
+  let nBin = (num % 2).toString();
 
   while (num > 1) {
-
-    nbin.unshift(Math.floor(num % 2));
-
-    num /= 2;
-
+    num = parseInt(num / 2);
+    nBin = (num % 2) + nBin;
   }
 
-  return nbin.join("");
+  return nBin;
 }
 
 
