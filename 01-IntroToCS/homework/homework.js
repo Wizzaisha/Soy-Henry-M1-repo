@@ -8,14 +8,10 @@ function BinarioADecimal(num) {
 
   //(bit * 2 ^ index)
 
-  let index = 0;
+  bin.reverse();
 
-  for (let position = bin.length - 1; bin.length <= 2 ? position > 0 : position >= 0; position--) {
-
-    numDecimal += (bin[index] * 2) ** position;
-
-    index++;
-
+  for (let i = 0; i < bin.length; i++) {
+    numDecimal += (bin[i] * (2 ** i));
   }
 
   return numDecimal;
