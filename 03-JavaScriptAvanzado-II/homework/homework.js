@@ -3,44 +3,27 @@
 // Closures
 
 function counter() {
-  /*
-  Ejercicio 1
+  let i = 0;
 
-  La función counter debe retornar otra función. Esta función retornada debe actuar como un contador, retornando un valor numérico que empieza en 1 e incrementa con cada invocación.
-
-  Ejemplo:
-  const nuevoContador = counter()
-  nuevoContador()     // 1
-  nuevoContador()     // 2
-  nuevoContador()     // 3
-
-  const otroContador = counter()
-  otroContador()      // 1
-  otroContador()      // 2
-  otroContador()      // 3
-   */
+  return function () {
+    i++;
+    return i;
+  }
 }
 
 function cacheFunction(cb) {
-  /*
-  Ejercicio 2
+  let obj = {}
 
-  Tu tarea aquí es lograr, mediante un closure, que cacheFunction actúe como una memoria caché para el callback que recibe por parámetro (cb); es decir, que "recuerde" el resultado de cada operación que hace, de manera que, al realizar una operación por segunda vez, se pueda obtener el resultado de esa "memoria" sin tener que efectuar otra vez cálculos que ya se hicieron anteriormente.
+  return function (arg) {
 
-  cacheFunction debe retornar una función. Esta función debe aceptar un argumento (arg) e invocar a cb con ese argumento; hecho eso, debe guardar el argumento junto con el resultado de la invocación (tip: usá un objeto donde cada propiedad sea el argumento, y su valor el resultado de la correspondiente invocación a cb) de manera que, la próxima vez que reciba el mismo argumento, no sea necesario volver a invocar a cb, porque el resultado estará guardado en la "memoria caché".
+    if (obj.hasOwnProperty(arg)) {
+      return obj[arg];
+    }
+    obj[arg] = cb(arg);
+    return obj[arg];
 
+  };
 
-  Ejemplo:
-  function square(n){
-    return n * n
-  }
-
-  const squareCache = cacheFunction(square)
-
-  squareCache(5)    // invocará a square(5), almacenará el resultado y lo retornará
-  squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
-
-  */
 }
 
 // Bind
@@ -67,8 +50,8 @@ function getNombre() {
   Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
 */
 
-let getNombreInstructor;
-let getNombreAlumno;
+let getNombreInstructor = getNombre.bind(instructor);
+let getNombreAlumno = getNombre.bind(alumno);
 
 /*
   Ejercicio 4
@@ -80,9 +63,9 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos;
-let textoGuiones;
-let textoUnderscore;
+let textoAsteriscos = crearCadena.bind(this, "*", "*");
+let textoGuiones = crearCadena.bind(this, "-", "-");
+let textoUnderscore = crearCadena.bind(this, "_", "_");
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
