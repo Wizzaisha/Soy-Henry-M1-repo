@@ -26,12 +26,12 @@ de manera iterativa.
 */
 
 function nFactorial(n) {
-  if (n < -1 || n < 2) {
-    return 1;
-  } else if (n < 0) {
-    return 0;
-  } else {
 
+  if (n < 0) {
+    throw "No se puede obtener el factorial de numeros negativos";
+  } else if (n === 0 || n === 1) {
+    return 1;
+  } else {
     let result = n * nFactorial(n - 1);
 
     return result;
@@ -40,10 +40,8 @@ function nFactorial(n) {
 
 function nFibonacci(n) {
 
-  if (n < 1) {
-    return 0;
-  } else if (n < 2) {
-    return 1;
+  if (n === 0 || n === 1) {
+    return n;
   } else {
     return nFibonacci(n - 2) + nFibonacci(n - 1);
   }
@@ -69,7 +67,7 @@ class Queue {
   enqueue(value) {
     return this.arr.push(value);
   }
-  dequeue(value) {
+  dequeue() {
     return this.arr.shift();
   }
 
