@@ -56,8 +56,8 @@ function insertionSort(array) {
   // Tu código:
   for (let i = 1; i < array.length; i++) {
 
-    let j = i - 1;
-    let aux = array[i];
+    let j = i - 1; // Siguiente
+    let aux = array[i]; // Actual
 
     while (j >= 0 && array[j] > aux) {
       array[j + 1] = array[j];
