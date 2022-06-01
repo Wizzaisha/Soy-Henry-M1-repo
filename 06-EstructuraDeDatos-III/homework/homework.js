@@ -28,15 +28,21 @@ class BinarySearchTree {
 
       // Recursion
       // Caso base
-      if (this.left === null) {
-        this.left = new BinarySearchTree(value);
+
+      // Se puede usar de esta forma tambien, 
+      // para que el valor no incluya variables que dan false
+      // como el underfine, aunque depende de las variables que se deseen guardar
+      // si se usan booleanos valen verga, DEPENDE LO QUE SE QUIERA LOL
+      if (this.left) {
+        this.left.insert(value);
       } else {
 
         // Accion a repetir
-        this.left.insert(value);
+
+        this.left = new BinarySearchTree(value);
       }
 
-    } else if (value > this.value) {
+    } else {
       // Izquierda
       if (this.right === null) {
         this.right = new BinarySearchTree(value);
@@ -66,16 +72,12 @@ class BinarySearchTree {
         // peroooo... se hace con this.right
         return this.left.contains(value);
       }
-    }
-
-    if (value > this.value) {
-      // Este es el caso base
-      if (this.right === null) {
-        return false;
-      } else {
-        // Este es la funcion de recursion
-        // peroooo... se hace con this.left
+    } else {
+      if (this.right) {
         return this.right.contains(value);
+      } else {
+
+        return false;
       }
     }
   }
@@ -100,10 +102,12 @@ class BinarySearchTree {
     } else if (order === "post-order") {
       // left - right - root
 
-      if (this.left !== null) {
+      // Se puede aplicar la misma logica de si existe el valor!
+      // osea si es algo verdadero
+      if (this.left) {
         this.left.depthFirstForEach(cb, order);
       }
-      if (this.right !== null) {
+      if (this.right) {
         this.right.depthFirstForEach(cb, order);
       }
 
@@ -144,7 +148,8 @@ class BinarySearchTree {
     // Se utiliza recursion para calcular el size
 
     // Este es el caos base
-    if (this.left === null && this.right === null) {
+    // Tambien se puede poner de esta forma
+    if (!this.left && !this.right) {
       return 1;
     }
 
@@ -154,7 +159,8 @@ class BinarySearchTree {
     }
 
     // Este se presenta cuando la izquierda hay valores
-    if (this.left != null && this.right === null) {
+    // tambien se puede poner de esta forma
+    if (this.left && !this.right) {
       return 1 + this.left.size();
     }
 
